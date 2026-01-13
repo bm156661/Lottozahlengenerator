@@ -2,6 +2,10 @@
 body{display:flex;flex-direction:column;align-items:center;padding:20px;background:linear-gradient(180deg,#f7f9fc,#e9f1ff);min-height:100vh;margin:0}
 header{width:100%;max-width:900px;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
 #drawBtn{background:#075985;color:#fff;padding:10px 16px;border-radius:8px;border:none;cursor:pointer;box-shadow:0 6px 18px rgba(7,89,133,.18)}
+.header-actions{display:flex;gap:10px;align-items:center}
+.link-button{display:inline-block;padding:8px 12px;border-radius:8px;background:#e2e8f0;color:#0f172a;text-decoration:none;border:1px solid #cbd5e1;font-weight:700}
+.link-button:hover{background:#dbeafe}
+.banner{background:#fff7ed;border:1px solid #ffd8a8;padding:10px 12px;border-radius:8px;margin-top:10px;color:#92400e}
 main{display:flex;gap:20px;width:100%;max-width:900px}
 #machine{flex:1;background:linear-gradient(180deg,#fff,#f3fbff);padding:16px;border-radius:12px;box-shadow:0 8px 30px rgba(3,0,30,.06)}
 #ball-pool{display:grid;grid-template-columns:repeat(7,48px);gap:8px;padding:12px}

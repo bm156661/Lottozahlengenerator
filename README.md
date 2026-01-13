@@ -32,6 +32,13 @@ Hinweis: Wenn kein WASM-Binary vorhanden ist, verwendet die Seite eine gleiche J
 
 Tastenkürzel: Du kannst **F5**, **Strg+R** (Windows/Linux) oder **Cmd+R** (macOS) drücken, um statt der Browser-Neuladen-Funktion eine Ziehung zu starten (die Seite verhindert dann das Reload). Falls du F5 auf einer anderen Seite innerhalb dieses Hosts drückst, leitet die Seite den Browser zur Generator‑Seite weiter und startet die Ziehung automatisch (`?auto=1`). Alternativ kann die Seite automatisch eine Ziehung starten, wenn du sie mit `?auto=1` oder `?draw=1` öffnest, z.B. `http://localhost:8000?auto=1`. (Hinweis: globale Browser-Shortcuts außerhalb dieses Hosts können nicht verändert werden.)
 
+Codespaces / Port-Weiterleitung
+- Wenn du in GitHub Codespaces arbeitest, stelle sicher, dass Port `8000` als "public" / weitergeleitet markiert ist (Codespaces → Ports). Du kannst das mit dem `gh` CLI-Befehl tun:
+
+  gh codespace ports forward 8000 --public
+
+- Falls die eingebettete Vorschau in der IDE nicht reagiert, klicke auf **„Im neuen Tab öffnen“** (oben rechts) — das öffnet die Seite direkt im Browser und startet die Ziehung automatisch (`?auto=1`).
+
 ## Sicherheit & Zufälligkeit
 Das WASM-Modul verwendet `getrandom` für gute Entropie (System-Krypto). Die Kombinationen werden durch Mischen (Fisher–Yates) erzeugt, wodurch jede Kombination gleichverteilt ist.
 

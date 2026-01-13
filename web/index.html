@@ -9,8 +9,14 @@
 <body>
 <header>
   <h1>Lottozahlengenerator 🎯</h1>
-  <button id="drawBtn" onclick="startDraw()">Ziehung starten</button>
+  <div class="header-actions">
+    <button id="drawBtn" onclick="startDraw()">Ziehung starten</button>
+    <a id="openBtn" class="link-button" href="#" role="button" style="display:none;">Im neuen Tab öffnen</a>
+  </div>
 </header>
+<div id="codespace-banner" class="banner" style="display:none;">
+  <strong>Achtung:</strong> Falls die Seite nicht reagiert (z. B. in Codespaces), klicke auf <em>„Im neuen Tab öffnen“</em> oder leite Port <code>8000</code> im Codespaces‑Ports‑Panel weiter.
+</div>
 <main>
   <section id="machine">
     <div id="ball-pool"></div>

@@ -158,6 +158,27 @@ async function init() {
   wasm = await initWasm();
   renderBalls();
   loadHistory();
+
+  // Setup "open in new tab" button
+  const openBtn = document.getElementById('openBtn');
+  if (openBtn) {
+    openBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const url = window.location.origin + window.location.pathname + '?auto=1';
+      try { window.open(url, '_blank', 'noopener'); showOverlay('Öffne neuen Tab…', 1200); }
+      catch (e) { window.location.href = url; }
+    });
+  }
+
+  // Detect Codespaces / editor embed and show a helpful banner
+  const isCodespaceHost = location.host.includes('github.dev') || location.host.includes('app.github.dev') || navigator.userAgent.toLowerCase().includes('codespaces');
+  if (isCodespaceHost) {
+    const b = document.getElementById('codespace-banner');
+    if (b) b.style.display = 'block';
+    if (openBtn) openBtn.style.display = 'inline-block';
+  }
+
+  // Auto-start draw if URL includes ?auto=1 or ?draw=1
   const params = new URLSearchParams(window.location.search);
   if (params.get('auto') === '1' || params.get('draw') === '1') {
     setTimeout(doDraw, 400);
