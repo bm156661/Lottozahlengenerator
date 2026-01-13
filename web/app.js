@@ -120,13 +120,36 @@ async function doDraw() {
 // Expose a global fallback so inline onclick works even if module listeners fail
 window.startDraw = function() {
   try {
-    if (!drawBtn) { console.warn('Button nicht gefunden'); return; }
+    console.log('startDraw called');
+    if (!drawBtn) { console.warn('Button nicht gefunden'); showOverlay('Button nicht gefunden', 1800); return; }
     if (drawBtn.disabled) { showOverlay('Ziehung läuft bereits…', 800); return; }
+    // immediate visual feedback
+    drawBtn.disabled = true;
+    drawBtn.textContent = 'Ziehung läuft…';
+    showOverlay('Ziehung gestartet…', 1200);
     doDraw();
   } catch (e) {
     console.error('startDraw error', e);
+    showOverlay('Fehler beim Starten', 2200);
   }
 };
+
+// Global error handler to make client-side errors visible
+window.addEventListener('error', (ev) => {
+  console.error('Global error', ev.error || ev.message || ev);
+  try { showOverlay('Fehler: ' + (ev.error?.message || ev.message || 'unknown'), 3000); } catch {};
+});
+
+// Debug logs for doDraw
+const _origDoDraw = doDraw;
+async function doDrawLogged() {
+  console.log('doDraw start');
+  await _origDoDraw();
+  console.log('doDraw end');
+}
+// replace reference
+window._doDrawLogged = doDrawLogged;
+
 
 function loadHistory(){ showHistory(); }
 
