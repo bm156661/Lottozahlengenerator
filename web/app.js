@@ -117,6 +117,17 @@ async function doDraw() {
   setTimeout(()=>{ drawBtn.disabled=false; drawBtn.textContent='Ziehung starten'; }, numbers.length * 900 + 300);
 }
 
+// Expose a global fallback so inline onclick works even if module listeners fail
+window.startDraw = function() {
+  try {
+    if (!drawBtn) { console.warn('Button nicht gefunden'); return; }
+    if (drawBtn.disabled) { showOverlay('Ziehung läuft bereits…', 800); return; }
+    doDraw();
+  } catch (e) {
+    console.error('startDraw error', e);
+  }
+};
+
 function loadHistory(){ showHistory(); }
 
 // Auto-start draw if URL includes ?auto=1 or ?draw=1
